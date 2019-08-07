@@ -1,4 +1,4 @@
-package com.goruslan.oauth.controller;
+package com.goruslan.oauth.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +10,17 @@ import java.security.Principal;
 @Controller
 public class MainController {
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String home() {
         return "index";
     }
 
-    @RequestMapping("user")
+    @GetMapping("/private")
+    public String privateArea(){
+        return "auth";
+    }
+
+    @GetMapping("user")
     @ResponseBody
     public Principal user(Principal principal) {
         return principal;
