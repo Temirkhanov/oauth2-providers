@@ -1,5 +1,6 @@
 package com.goruslan.oauth.controllers;
 
+import com.goruslan.oauth.entities.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -23,9 +24,8 @@ public class MainController {
     @GetMapping("/")
     public String home(Model model) {
         OAuth2User user = getCurrentUser();
-        StringBuffer authorities = new StringBuffer();
-//        user.getAuthorities().forEach((a) -> authorities.append(a.toString()).append(","));
-        model.addAttribute("user", user.getAttributes());
+        User newUser = new User(user.getAttributes().get("login").toString());
+        model.addAttribute("user", newUser);
         return "index";
     }
 

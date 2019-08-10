@@ -1,7 +1,7 @@
 package com.goruslan.oauth.security;
 
 //import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-import com.goruslan.oauth.service.UserService;
+//import com.goruslan.oauth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -16,8 +16,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableOAuth2Client
 public class AppSecurity extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -29,9 +29,9 @@ public class AppSecurity extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .oauth2Login()
-                .userInfoEndpoint()
-                .userService(userService);
+                .oauth2Login();
+//                .userInfoEndpoint();
+//                .userService(userService);
 
 
 //        http

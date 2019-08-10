@@ -22,7 +22,7 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private List<Role> roles;
 
-    public User(String login, String password) {
+    public User(String login) {
         this.login = login;
     }
 
