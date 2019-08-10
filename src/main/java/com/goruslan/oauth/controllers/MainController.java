@@ -1,5 +1,6 @@
 package com.goruslan.oauth.controllers;
 
+import com.goruslan.oauth.entities.Role;
 import com.goruslan.oauth.entities.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,11 +22,16 @@ public class MainController {
         return ((OAuth2AuthenticationToken)auth).getPrincipal();
     }
 
-    @GetMapping("/")
+    @GetMapping("/private")
     public String home(Model model) {
         OAuth2User user = getCurrentUser();
         User newUser = new User(user.getAttributes().get("login").toString());
         model.addAttribute("user", newUser);
+        return "private";
+    }
+
+    @GetMapping("/")
+    public String home() {
         return "index";
     }
 
