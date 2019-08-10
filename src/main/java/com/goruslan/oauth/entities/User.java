@@ -15,17 +15,15 @@ public class User {
     @GeneratedValue
     private long id;
 
-    private String username;
+    private String login;
 
-    private String password;
+//    private String password;
 
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private List<Role> roles;
 
-    public User(String username, String password, List<Role> roles) {
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
+    public User(String login, String password) {
+        this.login = login;
     }
 
 
