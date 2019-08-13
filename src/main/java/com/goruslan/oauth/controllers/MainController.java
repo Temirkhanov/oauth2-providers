@@ -2,6 +2,7 @@ package com.goruslan.oauth.controllers;
 
 import com.goruslan.oauth.entities.Role;
 import com.goruslan.oauth.entities.User;
+import com.goruslan.oauth.repositories.UserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -20,6 +21,11 @@ import java.util.LinkedHashMap;
 @Controller
 public class MainController {
 
+    private UserRepository userRepository;
+
+    public MainController(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     private OAuth2User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -29,8 +35,12 @@ public class MainController {
     @GetMapping("/private")
     public String secret(Model model) {
         OAuth2User user = getCurrentUser();
-        User newUser = new User(user.getAttributes().get("login").toString());
+        User newUser = new User(user.getAttributes().get("login").toString(),
+                                user.getAttributes().get("bio").toString(),
+                                user.getAttributes().get("blog").toString(),
+                                user.getAttributes().get("avatar_url").toString());
         model.addAttribute("user", newUser);
+        userRepository.save(newUser);
         return "private";
     }
 
