@@ -14,7 +14,11 @@
 
 <h2>===========================================</h2>
 
-	<h2> Welcome <h2 th:text="|${user.getUsername()} with the role of ${user.getRoles()}|"></h2></h2>
+	<h2> Welcome <h2 th:text="|${user.getUsername()} with the role of ${user.getRoles()}, bio ${user.getBio()}|"></h2></h2>
+	<h2>PORTFOLIO --> <a th:href="${user.getUrl()}"> Blog</a></h2>
+<h2>Avatar --> <a th:href="|https://${user.getAvatar()}|"> Blog</a></h2>
+
+
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.goruslan.oauth.entities;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class User {
     @GeneratedValue
     private long id;
 
+    @NonNull
     private String username;
 
     private String bio;

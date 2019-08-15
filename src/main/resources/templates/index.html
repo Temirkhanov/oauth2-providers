@@ -10,7 +10,26 @@
 </head>
 <body>
 	<h1>Welcome to Home Page</h1>
-<a href="/oauth2/authorization/github">Log In</a>
+
+	<div sec:authorize="!isAuthenticated()">
+		<a href="/oauth2/authorization/github">Log In</a>
+	</div>
+
+
+	<div sec:authorize="isAuthenticated()">
+		<form
+				method="POST"
+				th:action="@{/logout}"
+
+		>
+			<button
+					class="nav-link link text-danger d-xl-flex justify-content-xl-center align-items-xl-center"
+					style="border: none; background: none;"
+
+			>&nbsp;Log Out</button
+			>
+		</form>
+	</div>
 
 
 </body>
