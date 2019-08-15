@@ -25,31 +25,25 @@ public class AppSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .httpBasic()
-                .and().csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .oauth2Login();
-//                .userInfoEndpoint();
-//                .userService(userService);
-
-
-//        http
+//                .httpBasic()
+//                .and().csrf().disable()
 //                .authorizeRequests()
 //                .antMatchers("/").permitAll()
-//                .anyRequest().authenticated()
+//                .anyRequest()
+//                .authenticated()
 //                .and()
-//                    .oauth2Login()
-//                        .defaultSuccessUrl("/loginSuccess")
-//                    .and()
-//                        .logout()
-//                            .logoutSuccessUrl("/index")
-//                .and()
-//                    .csrf().disable()
-//                    .headers().frameOptions().disable();
+//                .oauth2Login();
+
+                .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .oauth2Login()
+                .and()
+                .logout().logoutSuccessUrl("/index")//permitall
+                .and()
+                .csrf().disable()
+                .headers().frameOptions().disable();
 
     }
 
